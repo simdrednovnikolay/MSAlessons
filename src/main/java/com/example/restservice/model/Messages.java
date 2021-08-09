@@ -1,20 +1,34 @@
 package com.example.restservice.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-@Component
+@Entity
+@Table(name = "Messages")
 public class Messages {
 
-    public List<Map<String,String>> viewMessages = new ArrayList<>() {{
-        add(new HashMap<>() {{put("id", "1"); put("text", "first text");}});
-        add(new HashMap<>() {{put("id", "2"); put("text", "second text");}});
-        add(new HashMap<>() {{put("id", "3"); put("text", "first text");}});
-        add(new HashMap<>() {{put("id", "4"); put("text", "fourth text");}});
-    }};
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(name = "message")
+    private String message;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
 
 }

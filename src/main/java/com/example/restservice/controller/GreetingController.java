@@ -2,6 +2,7 @@ package com.example.restservice.controller;
 
 
 import com.example.restservice.model.Messages;
+import com.example.restservice.service.MessagesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,50 +14,34 @@ import java.util.stream.Collectors;
 @RequestMapping("/messages")
 public class GreetingController {
 
-    private int count = 5;
 
     @Autowired
-    private Messages messages;
+    private MessagesServiceImpl messagesService;
 
     @GetMapping
-    public List<Map<String,String>> allMessages() {
-        return messages.viewMessages;
+    public List<Messages> allMessages() {
+        return messagesService.findAll();
     }
 
     @GetMapping("{id}")
-    public Map<String,String> getOneMessageFromId(@PathVariable String id) throws Throwable {
-              return messages.viewMessages.stream()
-                      .filter(m ->m.get("id").equals(id))
-                      .findFirst()
-                      .get();
+    public Messages getOneMessageFromId(@PathVariable String id) {
+              return messagesService.findById(Long.parseLong(id));
 
     }
 
     @PostMapping
-    public Map<String,String> createMessage(@RequestBody Map<String,String> newMessage) {
-        newMessage.put("id", String.valueOf(count++));
-        messages.viewMessages.add(newMessage);
-        return  newMessage;
+    public Messages createMessage(@RequestBody Messages newMessage) {
+        return  messagesService.createMessage(newMessage);
     }
 
     @PutMapping("{id}")
-    public Map<String,String> updateMessage(@PathVariable String id, @RequestBody Map<String,String> newMessage) {
-        Map<String,String> updateMessage = messages.viewMessages.stream()
-                .filter(m ->m.get("id").equals(id))
-                .findFirst()
-                .get();
-        updateMessage.putAll(newMessage);
-        updateMessage.put("id", id);
-        return updateMessage;
+    public Messages updateMessage(@PathVariable String id) {
+        return messagesService.updateMessage(messagesService.findById(Long.parseLong(id)));
     }
 
     @DeleteMapping("{id}")
     public void deleteMessage(@PathVariable String id) {
-        Map<String,String> deleteMessage = messages.viewMessages.stream()
-                .filter(m ->m.get("id").equals(id))
-                .findFirst()
-                .get();
-        messages.viewMessages.remove(deleteMessage);
+        messagesService.deleteMessageById(Long.parseLong(id));
     }
 
 }
