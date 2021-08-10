@@ -2,13 +2,11 @@ package com.example.restservice.controller;
 
 
 import com.example.restservice.model.Messages;
-import com.example.restservice.service.MessagesServiceImpl;
+import com.example.restservice.service.MessagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/messages")
@@ -16,7 +14,7 @@ public class GreetingController {
 
 
     @Autowired
-    private MessagesServiceImpl messagesService;
+    private MessagesService messagesService;
 
     @GetMapping
     public List<Messages> allMessages() {

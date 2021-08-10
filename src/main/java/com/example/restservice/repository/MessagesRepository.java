@@ -13,4 +13,5 @@ public interface MessagesRepository extends CrudRepository<Messages, Long> {
     List<Messages> findAll();
 
     Optional<Messages> findById(Long id);
+
 }
