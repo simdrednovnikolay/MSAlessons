@@ -20,3 +20,21 @@ databaseChangeLog:
                   constraints:
                     unique: true
                     nullable: false
+  - changeSet:
+      id: 2
+      author: nrednov
+      comment: "Create messages"
+      changes:
+        - insert:
+            tableName: messages
+            columns:
+              - column:
+                  name: message
+                  value: "First message"
+
+        - insert:
+            tableName: messages
+            columns:
+              - column:
+                  name: message
+                  value: "Second message"

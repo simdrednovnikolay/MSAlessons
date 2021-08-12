@@ -1,18 +1,18 @@
 package com.example.restservice.service;
 
-import com.example.restservice.model.Messages;
+import com.example.restservice.model.User;
 
 import java.util.List;
 
 public interface MessagesService {
 
-    List<Messages> findAll();
+    List<User> findAll();
 
-    Messages findById(Long id);
+    User findById(Long id);
 
-    Messages createMessage(Messages messages);
+    User createMessage(User messages);
 
     void deleteMessageById(Long id);
 
-    Messages updateMessage(Messages messages);
+    User updateMessage(User messages);
 }

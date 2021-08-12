@@ -1,11 +1,7 @@
 package com.example.restservice;
 
-import com.example.restservice.controller.GreetingController;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
-import java.util.logging.Logger;
 
 @Component
 @Aspect

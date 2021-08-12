@@ -1,6 +1,6 @@
 package com.example.restservice.service;
 
-import com.example.restservice.model.Messages;
+import com.example.restservice.model.User;
 import com.example.restservice.repository.MessagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +18,18 @@ public class MessagesServiceImpl implements MessagesService {
     private MessagesRepository messagesRepository;
 
     @Override
-    public List<Messages> findAll() {
+    public List<User> findAll() {
         return messagesRepository.findAll();
     }
 
     @Override
-    public Messages findById(Long id) {
-        Optional<Messages> findMessage = messagesRepository.findById(id);
+    public User findById(Long id) {
+        Optional<User> findMessage = messagesRepository.findById(id);
         return findMessage.get();
     }
 
     @Override
-    public Messages createMessage(Messages messages) {
+    public User createMessage(User messages) {
         return messagesRepository.save(messages);
     }
 
@@ -40,8 +40,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public Messages updateMessage(Messages messages) {
-        Optional<Messages> updateMes = messagesRepository.findById(messages.getId());
+    public User updateMessage(User user) {
+        Optional<User> updateMes = messagesRepository.findById(user.getId());
         return messagesRepository.save(updateMes.get());
     }
 }
